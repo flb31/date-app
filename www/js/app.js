@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'mwl.calendar' ])
+angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'starter.controllers', 'starter.services', 'mwl.calendar', 'firebase' ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $location, Login) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,10 +20,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    
+    // if none of the above states are matched, use this as the fallback
+    if(Login.isLogged())
+      $location.path('/tab/home');
+    else
+      $location.path('/tab/login');
+   
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -32,13 +39,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'TabsCtrl'
   })
-
+  
   // Each tab has its own nav history stack:
+  
+  .state('tab.login', {
+    url: '/login',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
 
   .state('tab.home', {
     url: '/home',
@@ -78,8 +96,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
 
 });

@@ -37,3 +37,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	}
 }
 
+.main-tab{
+  .tabs{
+   display: none; 
+  }
+}
+.tabs {
+  > a:nth-child(5) {
+    display: none;
+  }
+}
+

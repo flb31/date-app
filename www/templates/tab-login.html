@@ -1,0 +1,18 @@
+<ion-view view-title="Login">
+  <ion-content class="welcome">
+    <div class="list list-inset">
+     
+     <form name="form" >
+       <label class="item item-input">
+        <input type="text" placeholder="Indentificación" ng-pattern="/^\d{4,}$/" ng-model="user_id" required>
+      </label>
+      <button class="button button-full button-positive" ng-disabled="form.$invalid" ng-click="loginUser(user_id)">
+        Identifícate
+      </button>
+      
+      <div>{{saludo}}</div>
+     </form>
+      
+    </div>
+  </ion-content>
+</ion-view>

@@ -9729,3 +9729,9 @@ a.button {
     display: table-cell;
     text-align: center;
     vertical-align: middle; }
+
+.main-tab .tabs {
+  display: none; }
+
+.tabs > a:nth-child(5) {
+  display: none; }

@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope) {})
+.controller('HomeCtrl', function($scope, User) {
+  $scope.user = User.info();
+})
 
 .controller('CalendarCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -46,4 +48,22 @@ angular.module('starter.controllers', [])
 
 .controller('SettingCtrl', function($scope) {
   
-});
+})
+
+.controller('TabsCtrl', function($scope, Login) {
+  $scope.$watch( function() {
+    return Login.isLogged();
+  },
+  function(newVal, oldVal){
+    $scope.show_tabs =  ( newVal ) ? '' : 'main-tab';  
+  });
+})
+.controller('LoginCtrl', function($scope, $location, Login) {
+  
+  $scope.loginUser = function(user_id){
+    Login.loadUser(user_id, goHome);
+  }
+  var goHome = function(){
+    $location.path("/tab/home");
+  }
+})
