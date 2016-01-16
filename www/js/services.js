@@ -50,10 +50,25 @@ angular.module('starter.services', [])
     },
     
     logout : function(){
-      localStorage.clear();
-      userData = null;
-      $window.location.reload();
-      $location.path('/tab/login');
+      $ionicPopup.confirm({
+         title: 'Salir',
+         template: 'Desea salir ahora?',
+          buttons: [
+          { text: 'No' },
+          {
+            text: 'Si',
+            type: 'button-positive',
+            onTap: function(res) {
+              if(res) {
+                  localStorage.clear();
+                  userData = null;
+                  $window.location.reload();
+                  $location.path('/tab/login');
+               }
+            }
+          }
+        ]
+       });
     }
   }
 })
