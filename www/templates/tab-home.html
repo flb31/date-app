@@ -1,5 +1,11 @@
 <ion-view view-title="Bienvenido">
   <ion-content class="welcome">
-    <h1 class="title--welcome">Hola {{user.name}}</h1>
+    <h1 class="title--welcome">
+      <div>Hola {{user.name}}</div>
+      
+       <div class="logout">
+        <button class="button button-clear button-positive icon-left ion-power" ng-click="logout();">Salir</button>
+      </div>
+    </h1>
   </ion-content>
 </ion-view>

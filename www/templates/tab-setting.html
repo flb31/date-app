@@ -6,14 +6,14 @@
       <a class="item item-icon-left" href="#">
         <i class="icon ion-person"></i>
         Nombre
-        <span class="item-note">Fabian Luna</span>
+        <span class="item-note">{{user.name}}</span>
       </a>
 
       <a class="item item-icon-left" href="#">
         <i class="icon ion-ios-telephone"></i>
         Teléfono
         <span class="item-note">
-          (57)0123-456
+          {{user.phone}}
         </span>
       </a>
 
@@ -21,18 +21,18 @@
         <i class="icon ion-ios-email"></i>
         Correo
         <span class="item-note">
-          flb031@gmail.com
+          {{user.email}}
         </span>
       </a>
 
       <a class="item item-icon-left" href="#">
         <i class="icon ion-calendar"></i>
         Citas Pendientes
-        <span class="badge badge-assertive">1</span>
+        <span class="badge badge-assertive">{{totalDates}}</span>
       </a>
       
       <div class="item item-divider">
-        Tus datos no son correctos?
+        Datos Contacto
       </div>
       
       <a class="item item-icon-left item-icon-right" href="#">

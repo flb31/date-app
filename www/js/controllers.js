@@ -1,7 +1,10 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, User) {
+.controller('HomeCtrl', function($scope, User, Login) {
   $scope.user = User.info();
+  $scope.logout = function(){
+    Login.logout();
+  }
 })
 
 .controller('CalendarCtrl', function($scope, Chats) {
@@ -46,8 +49,9 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })*/
 
-.controller('SettingCtrl', function($scope) {
-  
+.controller('SettingCtrl', function($scope, User) {
+  $scope.user = User.info();
+  $scope.totalDates = User.totalDates();
 })
 
 .controller('TabsCtrl', function($scope, Login) {

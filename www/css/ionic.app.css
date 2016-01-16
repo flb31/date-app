@@ -9729,6 +9729,8 @@ a.button {
     display: table-cell;
     text-align: center;
     vertical-align: middle; }
+    .welcome .scroll .title--welcome .logout {
+      margin-top: 40px; }
 
 .main-tab .tabs {
   display: none; }

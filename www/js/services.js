@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Login', function($ionicLoading, $ionicPopup, $interval, TIMEOUT, WebServices, userData){
+.factory('Login', function($ionicLoading, $ionicPopup, $interval, $location, $window, TIMEOUT, WebServices, userData){
   
   var setID = function(user_id){
     localStorage.setItem("user_id", user_id);
@@ -51,6 +51,9 @@ angular.module('starter.services', [])
     
     logout : function(){
       localStorage.clear();
+      userData = null;
+      $window.location.reload();
+      $location.path('/tab/login');
     }
   }
 })
@@ -72,8 +75,13 @@ angular.module('starter.services', [])
       return Login.getUser();
     },
     dates: function(){
-      return user.dates;
+      return Login.getUser().dates;
+    },
+    
+    totalDates: function(){
+      return ( Login.getUser().dates )? Login.getUser().dates.length : 0;
     }
+    
   };
 })
 
