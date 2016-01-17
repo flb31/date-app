@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'star
       views: {
         'tab-calendar': {
           templateUrl: 'templates/tab-calendar.html',
-          controller: 'CalendarCtrl'
+          controller: 'CalendarCtrl as vm'
         }
       }
     })

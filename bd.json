@@ -6,12 +6,14 @@
     "phone" : "(+57)30100000",
     "dates" : [
       {
+        "id" : "50",
         "date" : "2016-01-20 12:00:00",
         "title" : "Examen de los ojos",
         "doctor" : "Fulanito de tal",
         "office" : "20"
       },
       {
+        "id" : "100",
         "date" : "2016-01-25 15:30:00",
         "title" : "Examen Fisico",
         "doctor" : "Fulanito de tal",
@@ -26,6 +28,7 @@
     "phone" : "44444444",
     "dates" : [
       {
+        "id" : "35",
         "date" : "2016-01-22 12:00:00",
         "title" : "Examen de los ojos",
         "doctor" : "Juanita de tal",

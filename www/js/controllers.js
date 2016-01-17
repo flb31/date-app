@@ -7,40 +7,52 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('CalendarCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
- /* $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };*/
+.controller('CalendarCtrl', function($scope, calendarConfig, Chats, User) {
+  
+  var vm = this;
+  
+  var dataEvents = new Array();
+  var dates = User.dates();
+  if(dates){
+    var current = new Date();
+    for(var k in dates ){
+      var item = dates[k];
+      var id = item
+      var date = new Date(item.date);
+      var type = ( current > date )? 'important' : 'success';
+      var title = item.title + " , Doctor: " + item.doctor;
+      var dateM = moment(date);
 
-  $scope.calendarView = 'month';
-  $scope.calendarDate = new Date();
-  $scope.events = [
-    {
-      title: 'Mi evento de prueba', // The title of the event
-      type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-      startsAt: moment().startOf('day').add(7, 'hours').toDate(), // A javascript date object for when the event starts
-      //endsAt: new Date(2016,1,10,11), // Optional - a javascript date object for when the event ends
-      editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable.
-      deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
-      draggable: false, //Allow an event to be dragged and dropped
-      resizable: false, //Allow an event to be resizable
-      incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
-      recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
-      cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
-    }
-  ];
-  $scope.isCellOpen = true;
+      dataEvents.push ( 
+                {
+                  id : id,
+                  title : title,
+                  startsAt : dateM._d,
+                  //endsAt: ,
+                  type: type,
+                  editable : false,
+                  editable: false, 
+                  deletable: false, 
+                  draggable: false,
+                  resizable: false,
+                  incrementsBadgeTotal: true,
+                  recursOn: 'year'
+                }
+      );
+    }  
+  }
+  
+  moment.locale('es', {weekdays: 'D_L_M_M_J_V_S'.split('_') });
+  calendarConfig.dateFormatter = 'moment'; // use moment instead of angular for formatting dates
+  var originali18n = angular.copy(calendarConfig.i18nStrings);
 
-  $scope.eventClicked = function(event) {
-    alert.show('Clicked', event);
+  vm.calendarView = 'month';
+  vm.viewDate = new Date();
+  vm.events = dataEvents;
+  
+  vm.eventClicked = function(event) {
+    alert('Clicked');
+    console.log(event);
   };
 
 })

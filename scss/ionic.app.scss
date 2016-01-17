@@ -18,6 +18,18 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+
+//Paddings
+$padding: 20px;
+$mid-padding: $padding / 2;
+$double-padding : $padding * 2;
+
+//Margins
+$margin: 20px;
+$mid-margin: $margin / 2;
+$double-margin : $margin * 2;
+
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
@@ -51,4 +63,41 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     display: none;
   }
 }
+
+//Helpers
+.padding{ padding: $padding; }
+.padding-top{ padding-top: $padding; }
+.padding-bottom{ padding-bottom: $padding; }
+.padding-left{ padding-left: $padding; }
+.padding-right{ padding-right: $padding; }
+
+.mid-padding{ padding: $mid-padding; }
+.mid-padding-top{ padding-top: $mid-padding; }
+.mid-padding-bottom{ padding-bottom: $mid-padding; }
+.mid-padding-left{ padding-left: $mid-padding; }
+.mid-padding-right{ padding-right: $mid-padding; }
+
+.double-padding{ padding: $double-padding; }
+.double-padding-top{ padding-top: $double-padding; }
+.double-padding-bottom{ padding-bottom: $double-padding; }
+.double-padding-left{ padding-left: $double-padding; }
+.double-padding-right{ padding-right: $double-padding; }
+
+.margin{ margin: $margin; }
+.margin-top{ margin-top: $margin; }
+.margin-bottom{ margin-bottom: $margin; }
+.margin-left{ margin-left: $margin; }
+.margin-right{ margin-right: $margin; }
+
+.mid-margin{ margin: $mid-margin; }
+.mid-margin-top{ margin-top: $mid-margin; }
+.mid-margin-bottom{ margin-bottom: $mid-margin; }
+.mid-margin-left{ margin-left: $mid-margin; }
+.mid-margin-right{ margin-right: $mid-margin; }
+
+.double-margin{ margin: $double-margin; }
+.double-margin-top{ margin-top: $double-margin; }
+.double-margin-bottom{ margin-bottom: $double-margin; }
+.double-margin-left{ margin-left: $double-margin; }
+.double-margin-right{ margin-right: $double-margin; }
 

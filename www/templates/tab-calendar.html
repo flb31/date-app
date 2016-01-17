@@ -1,29 +1,22 @@
-<ion-view view-title="Calendar">
+<ion-view>
+  <ion-nav-title>
+    {{vm.calendarTitle}}
+  </ion-nav-title>
+  <ion-nav-buttons side="left">
+      <button class="button icon ion-chevron-left" 
+      mwl-date-modifier date="vm.viewDate" decrement="vm.calendarView"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+      <button class="button icon ion-chevron-right" 
+      mwl-date-modifier date="vm.viewDate" increment="vm.calendarView"></button>
+  </ion-nav-buttons>
   <ion-content>
-    <!--<ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>-->
     <mwl-calendar
-      view="calendarView"
-      view-date="calendarDate"
-      events="events"
-      view-title="calendarTitle"
-      on-event-click="eventClicked(calendarEvent)"
-      on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-      edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-      delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-      on-edit-event-click="eventEdited(calendarEvent)"
-      on-delete-event-click="eventDeleted(calendarEvent)"
-      cell-is-open="isCellOpen">
+      view="vm.calendarView"
+      view-date="vm.viewDate"
+      events="vm.events"
+      on-event-click="vm.eventClicked(calendarEvent)"
+      view-title="vm.calendarTitle">
   </mwl-calendar>
   </ion-content>
 </ion-view>
