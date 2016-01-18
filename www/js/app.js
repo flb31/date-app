@@ -30,8 +30,19 @@ angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'star
   });
 })
 
-.config(function($stateProvider) {
+.config(function($stateProvider, $ionicConfigProvider, calendarConfig) {
 
+  //Translate
+  $ionicConfigProvider.backButton.text('Atrás');
+  
+  //Moment Config
+  moment.locale('es', {weekdays: 'Dom_Lun_Mar_Mie_Jue_Vie_Sab'.split('_')});
+  
+  //Calendar Config
+  calendarConfig.dateFormatter = 'moment'; // use moment instead of angular for formatting dates
+  calendarConfig.allDateFormats.moment.date.time = "hh:mm A";
+  var originali18n = angular.copy(calendarConfig.i18nStrings);
+  
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -77,15 +88,15 @@ angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'star
         }
       }
     })
-   /* .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+    .state('tab.calendar-detail', {
+        url: '/calendar/:calendarId',
+        views: {
+          'tab-calendar': {
+            templateUrl: 'templates/calendar-detail.html',
+            controller: 'CalendarDetail'
+          }
         }
-      }
-    })*/
+      })
 
   .state('tab.setting', {
     url: '/setting',

@@ -29,8 +29,15 @@
     "dates" : [
       {
         "id" : "35",
-        "date" : "2016-01-22 12:00:00",
+        "date" : "2016-02-20 12:00:00",
         "title" : "Examen de los ojos",
+        "doctor" : "Juanita de tal",
+        "office" : "33"
+      },
+      {
+        "id" : "36",
+        "date" : "2016-03-01 12:00:00",
+        "title" : "Examen de los ojos 2",
         "doctor" : "Juanita de tal",
         "office" : "33"
       }

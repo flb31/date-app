@@ -7,59 +7,27 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('CalendarCtrl', function($scope, calendarConfig, Chats, User) {
+.controller('CalendarCtrl', function($scope, $location, CalendarData) {
   
   var vm = this;
-  
-  var dataEvents = new Array();
-  var dates = User.dates();
-  if(dates){
-    var current = new Date();
-    for(var k in dates ){
-      var item = dates[k];
-      var id = item
-      var date = new Date(item.date);
-      var type = ( current > date )? 'important' : 'success';
-      var title = item.title + " , Doctor: " + item.doctor;
-      var dateM = moment(date);
-
-      dataEvents.push ( 
-                {
-                  id : id,
-                  title : title,
-                  startsAt : dateM._d,
-                  //endsAt: ,
-                  type: type,
-                  editable : false,
-                  editable: false, 
-                  deletable: false, 
-                  draggable: false,
-                  resizable: false,
-                  incrementsBadgeTotal: true,
-                  recursOn: 'year'
-                }
-      );
-    }  
+  vm.calendarView = 'month';
+  vm.viewDate = CalendarData.firstDate();
+  vm.events = CalendarData.get();
+  vm.dateClicked = function(){
+    alert("Ahora es mi click");
   }
   
-  moment.locale('es', {weekdays: 'D_L_M_M_J_V_S'.split('_') });
-  calendarConfig.dateFormatter = 'moment'; // use moment instead of angular for formatting dates
-  var originali18n = angular.copy(calendarConfig.i18nStrings);
-
-  vm.calendarView = 'month';
-  vm.viewDate = new Date();
-  vm.events = dataEvents;
-  
-  vm.eventClicked = function(event) {
-    alert('Clicked');
-    console.log(event);
+  vm.eventClicked = function(date) {
+    $location.path("/tab/calendar/"+date.id); ;
   };
 
 })
-/*
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})*/
+
+.controller('CalendarDetail', function($scope, $stateParams, User, moment) {
+  var objDate = User.getDate($stateParams.calendarId);
+  objDate.date = moment(objDate.date).format("dddd[,] D MMMM [de] YYYY h:mm A");
+  $scope.date = objDate;
+})
 
 .controller('SettingCtrl', function($scope, User) {
   $scope.user = User.info();

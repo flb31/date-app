@@ -83,7 +83,7 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('User', function(Login, WebServices){
+.factory('User', function(Login){
   
   return {
     info: function(){
@@ -93,6 +93,16 @@ angular.module('starter.services', [])
       return Login.getUser().dates;
     },
     
+    getDate: function(date_id){
+      var dates = Login.getUser().dates;
+      for (var i = 0; i < dates.length; i++) {
+        if (dates[i].id == date_id) {
+          return dates[i];
+        }
+      }
+      return null;
+    },
+    
     totalDates: function(){
       return ( Login.getUser().dates )? Login.getUser().dates.length : 0;
     }
@@ -100,51 +110,51 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.factory('CalendarData', function(User){
+  var dataEvents = new Array();
+  var dates = User.dates();
+  if(dates){
+    var current = new Date();
+    for(var k in dates ){
+      var item = dates[k];
+      var id = item.id;
+      var date = new Date(item.date);
+      var type = ( current > date )? 'important' : 'success';
+      var title = item.title + " , Médico: " + item.doctor;
+      var dateM = moment(date);
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
-
+      dataEvents.push ( 
+                {
+                  id : id,
+                  title : title,
+                  startsAt : dateM._d,
+                  type: type,
+                  editable : false,
+                  editable: false, 
+                  deletable: false, 
+                  draggable: false,
+                  resizable: false,
+                  incrementsBadgeTotal: true,
+                  recursOn: 'year'
+                }
+      );
+    }  
+  }
+  
   return {
-    all: function() {
-      return chats;
+    get: function(){
+      return dataEvents;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
+    firstDate: function(){
+      var current = new Date();
+      var first_date;
+      for(var i = 0; i < dataEvents.length; i++){
+        var d_index = dataEvents[i].startsAt;
+        if( !first_date || (current < d_index && first_date > d_index) )
+          first_date = d_index;
       }
-      return null;
+      return first_date;
     }
-  };
+  }
+  
 });
