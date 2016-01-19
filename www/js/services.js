@@ -153,7 +153,7 @@ angular.module('starter.services', [])
         if( !first_date || (current < d_index && first_date > d_index) )
           first_date = d_index;
       }
-      return first_date;
+      return (typeof first_date == 'undefined') ? current : first_date;
     }
   }
   
