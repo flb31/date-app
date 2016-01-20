@@ -8,14 +8,14 @@ data["1128053244"] =
     "dates" : [
       {
         "id" : "50",
-        "date" : "2016-01-20T12:00:00",
+        "date" : "2016-01-20T17:35:00-0500",
         "title" : "Examen de los ojos",
         "doctor" : "Fulanito de tal",
         "office" : "20"
       },
       {
         "id" : "100",
-        "date" : "2016-01-25T15:30:00",
+        "date" : "2016-02-25T15:30:00-0500",
         "title" : "Examen Fisico",
         "doctor" : "Fulanito de tal",
         "office" : "204"
@@ -32,14 +32,14 @@ data["123456"] =
     "dates" : [
       {
         "id" : "35",
-        "date" : "2016-02-20T12:00:00",
+        "date" : "2016-02-20T12:00:00-0500",
         "title" : "Examen de los ojos",
         "doctor" : "Juanita de tal",
         "office" : "33"
       },
       {
         "id" : "36",
-        "date" : "2016-03-01T12:00:00",
+        "date" : "2016-03-01T12:00:00-0500",
         "title" : "Examen de los ojos 2",
         "doctor" : "Juanita de tal",
         "office" : "33"

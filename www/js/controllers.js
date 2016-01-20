@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, User, Login, CalendarNotification, $location) {
+.controller('HomeCtrl', function($scope, $location, User, Login, CalendarNotification, Calendar) {
   $scope.user = User.info();
   $scope.logout = function(){
     Login.logout();
@@ -8,15 +8,18 @@ angular.module('starter.controllers', [])
   
   //Load dates for notification
   var dates = User.dates();
+  var cont = 0;
   for ( var i = 0; i < dates.length; i++){
-    var id = dates[i].id;
     
-    var now = new Date().getTime();
-    var date = new Date(now + ( 30 * (i+1)  * 1000) );
-    //var date = dates[i].date;
-    var text = dates[i].title;
-    var data = { url : "/tab/calendar/"+id };
-    CalendarNotification.addNotification(id, text, date, data);
+    if( !Calendar.isExpired ( new Date(dates[i].date )) ){
+      var id = dates[i].id;
+      var now = new Date().getTime();
+      var date = new Date(now + ( 30 * (++cont+1)  * 1000) );
+      var text = dates[i].title;
+      var data = { url : "/tab/calendar/"+id };
+      CalendarNotification.addNotification(id, text, date, data);
+    }
+    
   }
   
   $scope.$on('$cordovaLocalNotification:click',

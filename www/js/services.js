@@ -84,7 +84,7 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('User', function(Login){
+.factory('User', function(Login, Calendar){
   
   return {
     info: function(){
@@ -105,13 +105,18 @@ angular.module('starter.services', [])
     },
     
     totalDates: function(){
-      return ( Login.getUser().dates )? Login.getUser().dates.length : 0;
+      var dates = Login.getUser().dates;
+      var total = 0;
+      for ( var i = 0; i < dates.length; i++)
+        if ( !Calendar.isExpired( new Date(dates[i].date) ) )
+          total++;
+      return total;
     }
     
   };
 })
 
-.factory('CalendarData', function(User){
+.factory('CalendarData', function(User, Calendar){
   var dataEvents = new Array();
   var dates = User.dates();
   if(dates){
@@ -153,8 +158,10 @@ angular.module('starter.services', [])
       var first_date;
       for(var i = 0; i < dataEvents.length; i++){
         var d_index = dataEvents[i].startsAt;
-        if( !first_date || (current < d_index && first_date > d_index) )
-          first_date = d_index;
+        if( !Calendar.isExpired(d_index) ){
+          if( !first_date || first_date.getTime() > d_index.getTime() )
+            first_date = d_index;  
+        }
       }
       return (typeof first_date == 'undefined') ? current : first_date;
     }
@@ -162,9 +169,16 @@ angular.module('starter.services', [])
   
 })
 
+.factory('Calendar', function(){
+  return {
+    isExpired : function(date){
+      var now = new Date();
+      return (date.getTime() < now.getTime() ) ? true : false;
+    }
+  }
+})
+
 .factory('CalendarNotification', function($cordovaLocalNotification, $location, TitleApp){
-  
-  
   
   return {
     addNotification : function(id, text, date){
