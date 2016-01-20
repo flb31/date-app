@@ -1,31 +1,34 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, User, Login, $cordovaLocalNotification) {
+.controller('HomeCtrl', function($scope, User, Login, CalendarNotification, $location) {
   $scope.user = User.info();
   $scope.logout = function(){
     Login.logout();
   }
   
-  $scope.addNotification = function(){
+  //Load dates for notification
+  var dates = User.dates();
+  for ( var i = 0; i < dates.length; i++){
+    var id = dates[i].id;
+    
     var now = new Date().getTime();
-    var _10SecondsFromNow = new Date(now + 10 * 1000);
-
-    $cordovaLocalNotification.schedule({
-      id: 2,
-      title: 'Titulo Notificacion local',
-      text: 'Esta es una notificación de prueba',
-      date: _10SecondsFromNow,
-      data: {
-        url: "path/to/notification/1"
-      }
-    }).then(function () {
-      alert("Notificación creada ");
-    });
+    var date = new Date(now + ( 30 * (i+1)  * 1000) );
+    //var date = dates[i].date;
+    var text = dates[i].title;
+    var data = { url : "/tab/calendar/"+id };
+    CalendarNotification.addNotification(id, text, date, data);
   }
+  
   $scope.$on('$cordovaLocalNotification:click',
     function (event, notification, state) {
-    var data = JSON.parse( notification.data );
-    alert("Click to notification: " + data.url);
+    
+    if( typeof notification.data !== 'null' ){
+      var data = JSON.parse( notification.data );
+      //Callback function here, but in the future...
+      $location.path(data.url);
+    }else
+      console.log('Notificacion no ejecutada.');
+    
   });
   
 })
@@ -36,9 +39,6 @@ angular.module('starter.controllers', [])
   vm.calendarView = 'month';
   vm.viewDate = CalendarData.firstDate();
   vm.events = CalendarData.get();
-  vm.dateClicked = function(){
-    alert("Ahora es mi click");
-  }
   
   vm.eventClicked = function(date) {
     $location.path("/tab/calendar/"+date.id); ;
@@ -48,7 +48,7 @@ angular.module('starter.controllers', [])
 
 .controller('CalendarDetail', function($scope, $stateParams, User, moment) {
   var objDate = User.getDate($stateParams.calendarId);
-  objDate.date = moment(objDate.date).format("dddd[,] D MMMM [de] YYYY h:mm A");
+  objDate.textDate = moment(objDate.date).format("dddd[,] D MMMM [de] YYYY h:mm A");
   $scope.date = objDate;
 })
 

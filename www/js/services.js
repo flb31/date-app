@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Login', function($ionicLoading, $ionicPopup, $interval, $location, $window, TIMEOUT, WebServices, userData){
+.factory('Login', function($ionicLoading, $ionicPopup, $interval, $location, $window, TIMEOUT, WebServices, UserData){
   
   var setID = function(user_id){
     localStorage.setItem("user_id", user_id);
@@ -8,13 +8,14 @@ angular.module('starter.services', [])
   var loadUser = function(user_id){
     //WebServices.getUser(user_id);
     var callback = arguments[1];
-      
+    
+    
     $ionicLoading.show({ template: 'Buscando...'});
     var stop = $interval(function(i){
-      if(userData[user_id].id){
+      if(UserData[user_id].id){
         $ionicLoading.hide();
         $interval.cancel(stop);
-        setID(userData[user_id].id);
+        setID(UserData[user_id].id);
         if(callback) callback();
       } else if(TIMEOUT < i){
         $ionicLoading.hide();
@@ -41,8 +42,8 @@ angular.module('starter.services', [])
     },
     
     getUser: function(){
-      if(userData == null) loadUser( getID() );
-      return userData[getID()];
+      if(UserData == null) loadUser( getID() );
+      return UserData[getID()];
     },
     
     isLogged : function(){
@@ -119,6 +120,7 @@ angular.module('starter.services', [])
       var item = dates[k];
       var id = item.id;
       var date = new Date(item.date);
+      console.log(date + " "+item.date);
       var type = ( current > date )? 'important' : 'success';
       var title = item.title + " , Médico: " + item.doctor;
       var dateM = moment(date);
@@ -138,7 +140,8 @@ angular.module('starter.services', [])
                   recursOn: 'year'
                 }
       );
-    }  
+    }
+    console.log(dataEvents);
   }
   
   return {
@@ -154,6 +157,32 @@ angular.module('starter.services', [])
           first_date = d_index;
       }
       return (typeof first_date == 'undefined') ? current : first_date;
+    }
+  }
+  
+})
+
+.factory('CalendarNotification', function($cordovaLocalNotification, $location, TitleApp){
+  
+  
+  
+  return {
+    addNotification : function(id, text, date){
+      if(window.plugin && window.plugin.notification) { 
+      
+        var data = (typeof arguments[3] === 'object') ? arguments[3] : null;
+
+        //Create two dates (1 before week and 1 day before and 6am date's day )
+        $cordovaLocalNotification.schedule({
+          id: id,
+          title: TitleApp,
+          text: text,
+          date: date,
+          data: data
+        }).then(function () {
+          //Ok
+        });
+      }
     }
   }
   

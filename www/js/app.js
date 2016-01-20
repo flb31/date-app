@@ -21,8 +21,10 @@ angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'star
       StatusBar.styleDefault();
     }
     
-    if(device.platform === "iOS") {
-      window.plugin.notification.local.promptForPermission();
+    if(typeof device !== 'undefined'){
+      if(device.platform === "iOS") {
+        window.plugin.notification.local.promptForPermission();
+      }  
     }
     
     // if none of the above states are matched, use this as the fallback
