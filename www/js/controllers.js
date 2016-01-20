@@ -29,9 +29,11 @@ angular.module('starter.controllers', [])
   $scope.date = objDate;
 })
 
-.controller('SettingCtrl', function($scope, User) {
+.controller('SettingCtrl', function($scope, User, BusinessEmail, BusinessPhone) {
   $scope.user = User.info();
   $scope.totalDates = User.totalDates();
+  $scope.phone = BusinessPhone;
+  $scope.email = BusinessEmail;
 })
 
 .controller('TabsCtrl', function($scope, Login) {
