@@ -6,15 +6,15 @@ angular.module('starter.services', [])
     localStorage.setItem("user_id", user_id);
   }
   var loadUser = function(user_id){
-    
+    //WebServices.getUser(user_id);
     var callback = arguments[1];
-    userData = WebServices.getUser(user_id);
+      
     $ionicLoading.show({ template: 'Buscando...'});
     var stop = $interval(function(i){
-      if(userData.id){
+      if(userData[user_id].id){
         $ionicLoading.hide();
         $interval.cancel(stop);
-        setID(userData.id);
+        setID(userData[user_id].id);
         if(callback) callback();
       } else if(TIMEOUT < i){
         $ionicLoading.hide();
@@ -42,7 +42,7 @@ angular.module('starter.services', [])
     
     getUser: function(){
       if(userData == null) loadUser( getID() );
-      return userData;
+      return userData[getID()];
     },
     
     isLogged : function(){
@@ -61,7 +61,7 @@ angular.module('starter.services', [])
             onTap: function(res) {
               if(res) {
                   localStorage.clear();
-                  userData = null;
+                  //userData = null;
                   $window.location.reload();
                   $location.path('/tab/login');
                }
