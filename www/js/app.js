@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'starter.controllers', 'starter.services', 'mwl.calendar', 'firebase' ])
+angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'starter.controllers', 'starter.services', 'mwl.calendar', 'firebase', 'ngCordova' ])
 
 .run(function($ionicPlatform, $location, Login) {
   $ionicPlatform.ready(function() {
@@ -19,6 +19,10 @@ angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'star
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+    
+    if(device.platform === "iOS") {
+      window.plugin.notification.local.promptForPermission();
     }
     
     // if none of the above states are matched, use this as the fallback

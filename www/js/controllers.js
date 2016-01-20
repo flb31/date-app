@@ -1,10 +1,33 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, User, Login) {
+.controller('HomeCtrl', function($scope, User, Login, $cordovaLocalNotification) {
   $scope.user = User.info();
   $scope.logout = function(){
     Login.logout();
   }
+  
+  $scope.addNotification = function(){
+    var now = new Date().getTime();
+    var _10SecondsFromNow = new Date(now + 10 * 1000);
+
+    $cordovaLocalNotification.schedule({
+      id: 2,
+      title: 'Titulo Notificacion local',
+      text: 'Esta es una notificación de prueba',
+      date: _10SecondsFromNow,
+      data: {
+        url: "path/to/notification/1"
+      }
+    }).then(function () {
+      alert("Notificación creada ");
+    });
+  }
+  $scope.$on('$cordovaLocalNotification:click',
+    function (event, notification, state) {
+    var data = JSON.parse( notification.data );
+    alert("Click to notification: " + data.url);
+  });
+  
 })
 
 .controller('CalendarCtrl', function($scope, $location, CalendarData) {

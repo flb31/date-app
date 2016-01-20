@@ -9,6 +9,7 @@
   "dependencies": {
     "angular-bootstrap-calendar": "~0.18.0",
     "angular-bootstrap": "~1.0.0",
-    "moment": "~2.11.0"
+    "moment": "~2.11.0",
+    "ngCordova": "~0.1.24-alpha"
   }
 }
