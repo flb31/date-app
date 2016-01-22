@@ -63,7 +63,6 @@ angular.module('starter.services', [])
               if(res) {
                   localStorage.clear();
                   //userData = null;
-                  $window.location.reload();
                   $location.path('/tab/login');
                }
             }
