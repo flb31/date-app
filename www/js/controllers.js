@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
     if( !Calendar.isExpired ( new Date(dates[i].date )) ){
       var id = dates[i].id;
       var now = new Date().getTime();
-      var date = new Date(now + ( 30 * (++cont+1)  * 1000) );
+      var date = new Date(now + ( 30 * (++cont)  * 1000) );
       var text = dates[i].title;
       var data = { url : "/tab/calendar/"+id };
       CalendarNotification.addNotification(id, text, date, data);
