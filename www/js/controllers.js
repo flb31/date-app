@@ -15,7 +15,8 @@ angular.module('starter.controllers', [])
       var id = dates[i].id;
       var now = new Date().getTime();
       var date = new Date(now + ( 30 * (++cont)  * 1000) );
-      var text = dates[i].title;
+      var title_date = moment(dates[i].date).format("D MMMM [de] YYYY h:mm A")
+      var text = dates[i].title + " el " + title_date;
       var data = { url : "/tab/calendar/"+id };
       CalendarNotification.addNotification(id, text, date, data);
     }
