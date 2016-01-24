@@ -3,6 +3,18 @@
     <h1 class="title--welcome">
       <div>Hola {{user.name}}</div>
       
+      <div ng-show="{{totalDates}} > 0"> 
+             Tienes {{totalDates}} cita<letter ng-show="{{totalDates}} > 1">s</letter>
+            pendiente<letter ng-show="{{totalDates}} > 1">s</letter>.
+      </div>
+      <div ng-show="{{totalDates}} == 0"> No tienes citas pendientes. </div>
+      
+      <div ng-show="{{totalDates}} > 0"> 
+      
+          Tu proxima cita 
+          <a href="#/tab/calendar/{{nextDate.id}}">Ver</a>
+      </div>
+      
       <!--
        <div class="logout">
         <button class="button button-clear button-positive icon-left ion-power" ng-click="logout();">Salir</button>

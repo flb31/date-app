@@ -163,9 +163,20 @@ angular.module('starter.services', [])
         }
       }
       return (typeof first_date == 'undefined') ? current : first_date;
+    },
+    nextDate: function(){
+      var current = new Date();
+      var nextDate = null;
+      for(var i = 0; i < dataEvents.length; i++){
+        var d_index = dataEvents[i].startsAt;
+        if( !Calendar.isExpired(d_index) ){
+          if( !nextDate || nextDate.getTime() > d_index.getTime() )
+            nextDate = dataEvents[i];
+        }
+      }
+      return nextDate;
     }
   }
-  
 })
 
 .factory('Calendar', function(){

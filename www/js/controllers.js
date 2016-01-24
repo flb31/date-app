@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, $location, User, Login, CalendarNotification, Calendar) {
+.controller('HomeCtrl', function($scope, $location, User, Login, CalendarNotification, Calendar, CalendarData) {
   $scope.user = User.info();
   $scope.logout = function(){
     Login.logout();
@@ -34,6 +34,8 @@ angular.module('starter.controllers', [])
     
   });
   
+  $scope.totalDates = User.totalDates();
+  $scope.nextDate = CalendarData.nextDate();
 })
 
 .controller('CalendarCtrl', function($scope, $location, CalendarData) {
