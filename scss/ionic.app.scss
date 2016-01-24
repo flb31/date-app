@@ -53,7 +53,10 @@ $double-margin : $margin * 2;
   }  
 }
 
-.main-tab{
+#main-tab{
+  .has-tabs-top{
+    top: 44px;
+  }
   .tabs{
    display: none; 
   }
