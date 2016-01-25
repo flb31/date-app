@@ -166,15 +166,15 @@ angular.module('starter.services', [])
     },
     nextDate: function(){
       var current = new Date();
-      var nextDate = null;
+      var ndate = null;
       for(var i = 0; i < dataEvents.length; i++){
         var d_index = dataEvents[i].startsAt;
         if( !Calendar.isExpired(d_index) ){
-          if( !nextDate || nextDate.getTime() > d_index.getTime() )
-            nextDate = dataEvents[i];
+          if( ndate == null || ndate.startsAt.getTime() > d_index.getTime() )
+            ndate = dataEvents[i];
         }
       }
-      return nextDate;
+      return ndate;
     }
   }
 })
