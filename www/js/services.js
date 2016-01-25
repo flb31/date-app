@@ -12,7 +12,7 @@ angular.module('starter.services', [])
     
     $ionicLoading.show({ template: 'Buscando...'});
     var stop = $interval(function(i){
-      if(UserData[user_id].id){
+      if(typeof UserData[user_id] === 'object' ){
         $ionicLoading.hide();
         $interval.cancel(stop);
         setID(UserData[user_id].id);
