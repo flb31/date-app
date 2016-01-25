@@ -4,34 +4,33 @@ in ionic's _variables.scss file.
 
 For example, you might change some of the default colors:
 */
-$light:                           #fff !default;
+$light:                           #E1F5FE !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
+$positive:                        #388E3C !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
-$dark:                            #444 !default;
+$dark:                            #0277BD !default;
+
+/*light: #B3E5FC
+dark : #0277BD
+other color: #388E3C*/
 
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 
-//Paddings
-$padding: 20px;
-$mid-padding: $padding / 2;
-$double-padding : $padding * 2;
-
-//Margins
-$margin: 20px;
-$mid-margin: $margin / 2;
-$double-margin : $margin * 2;
+$RobotoDraftFontPath: "../fonts"; // REMINDER: edit as appropriate!
+$RobotoDraftFontName: "RobotoDraft";
+$RobotoDraftFontVersion: "1.0.0";
 
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import "www/lib/robotodraft/sass/robotodraft.scss"; 
 
 
 
@@ -55,7 +54,7 @@ $double-margin : $margin * 2;
 
 #main-tab{
   .has-tabs-top{
-    top: 44px;
+    top: 0;
   }
   .tabs{
    display: none; 
@@ -67,40 +66,32 @@ $double-margin : $margin * 2;
   }
 }
 
-//Helpers
-.padding{ padding: $padding; }
-.padding-top{ padding-top: $padding; }
-.padding-bottom{ padding-bottom: $padding; }
-.padding-left{ padding-left: $padding; }
-.padding-right{ padding-right: $padding; }
+.background-login{
+  background-image: url('../img/background.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
 
-.mid-padding{ padding: $mid-padding; }
-.mid-padding-top{ padding-top: $mid-padding; }
-.mid-padding-bottom{ padding-bottom: $mid-padding; }
-.mid-padding-left{ padding-left: $mid-padding; }
-.mid-padding-right{ padding-right: $mid-padding; }
+.bar.bar-header{ box-shadow: none !important; }
 
-.double-padding{ padding: $double-padding; }
-.double-padding-top{ padding-top: $double-padding; }
-.double-padding-bottom{ padding-bottom: $double-padding; }
-.double-padding-left{ padding-left: $double-padding; }
-.double-padding-right{ padding-right: $double-padding; }
 
-.margin{ margin: $margin; }
+//Margin
+$margin: 10px;
+
 .margin-top{ margin-top: $margin; }
 .margin-bottom{ margin-bottom: $margin; }
 .margin-left{ margin-left: $margin; }
 .margin-right{ margin-right: $margin; }
+.margin-horizontal{ @extend .margin-left; @extend .margin-right; }
+.margin-vertical{ @extend .margin-top; @extend .margin-bottom; }
 
-.mid-margin{ margin: $mid-margin; }
-.mid-margin-top{ margin-top: $mid-margin; }
-.mid-margin-bottom{ margin-bottom: $mid-margin; }
-.mid-margin-left{ margin-left: $mid-margin; }
-.mid-margin-right{ margin-right: $mid-margin; }
 
-.double-margin{ margin: $double-margin; }
-.double-margin-top{ margin-top: $double-margin; }
-.double-margin-bottom{ margin-bottom: $double-margin; }
-.double-margin-left{ margin-left: $double-margin; }
-.double-margin-right{ margin-right: $double-margin; }
+//Helpers
+.display-inline{ display: inline !important; }
+.display-block{ display: block !important; }
+.display-iblock{ display: inline-block!important; }
 
+.position-relative { position: relative !important; }
+.position-absolute { position: absolute !important; }
+.position-static{ position: static !important; }

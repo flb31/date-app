@@ -1,24 +1,23 @@
 <ion-view view-title="Bienvenido">
-  <ion-content class="welcome">
-    <h1 class="title--welcome">
-      <div>Hola {{user.name}}</div>
-      
-      <div ng-show="{{totalDates}} > 0"> 
-             Tienes {{totalDates}} cita<letter ng-show="{{totalDates}} > 1">s</letter>
-            pendiente<letter ng-show="{{totalDates}} > 1">s</letter>.
-      </div>
-      <div ng-show="{{totalDates}} == 0"> No tienes citas pendientes. </div>
-      
-      <div ng-show="{{totalDates}} > 0"> 
-      
-          Tu proxima cita 
-          <a href="#/tab/calendar/{{nextDate.id}}">Ver</a>
+  <ion-content class="welcome animate-fade-slide-in" ng-class="{expanded:isExpanded}">
+     
+    <div class="list card" style="margin-top: 20px;">
+       <div class="item item-avatar padding-bottom">
+        <img src="img/user.png" class="" alt="">
+        <h2>Hola {{user.name}}</h2>
+
+        <p ng-show="{{totalDates}} > 0">
+          Tienes <span class="badge display-inline position-static badge-assertive">{{totalDates}}</span> cita<l ng-show="{{totalDates}} > 1">s</l> pendiente<l ng-show="{{totalDates}} > 1">s</l>.
+        </p>
+        <p ng-show="{{totalDates}} == 0"> No tienes citas pendientes. </p>
       </div>
       
-      <!--
-       <div class="logout">
-        <button class="button button-clear button-positive icon-left ion-power" ng-click="logout();">Salir</button>
-      </div>-->
-    </h1>
+      <div class="item item-divider" ng-show="{{totalDates}} > 0">Tu próxima cita</div>
+      <a class="item item-icon-left assertive" href="#/tab/calendar/{{nextDate.id}}" ng-show="{{totalDates}} > 0">
+        <i class="icon ion-medkit"></i>
+        {{nextDate.title}}
+      </a>
+      
+    </div>
   </ion-content>
 </ion-view>

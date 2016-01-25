@@ -1,16 +1,23 @@
-<ion-view view-title="Login">
-  <ion-content class="welcome">
-    <div class="list list-inset">
-     
-     <form name="form" >
-       <label class="item item-input">
-        <input type="tel" placeholder="Indentificación" ng-pattern="/^\d{4,}$/" ng-model="user_id" required>
-      </label>
-      <button class="button button-full button-positive" ng-disabled="form.$invalid" ng-click="loginUser(user_id)">
-        Identifícate
-      </button>
-     </form>
-     
-    </div>
+<ion-view view-title="Login" hide-nav-bar="true">
+  <ion-content class="background-login">
+    
+
+  <div class="hero no-header flat margin-top">
+      <div class="content">
+          <img src="img/logo.png" width="180" height="180" alt="">  
+         <h1 style="color:#000;">Citas</h1>
+      </div>
+  </div>
+  <div class="content">
+    <form name="form">
+      <div class="list padding-right">
+            <ion-md-input placeholder="Identificación" highlight-color="balanced" type="tel" ng-pattern="/^\d{4,}$/" ng-model="user_id" required></ion-md-input>
+            
+        </div>
+      <div class=" padding-horizontal">
+       <button ui-sref="app.profile" class="button button-full button-assertive ink" ng-disabled="form.$invalid" ng-click="loginUser(user_id)">Identificate</button>
+      </div>
+    </form>
+  </div>
   </ion-content>
 </ion-view>

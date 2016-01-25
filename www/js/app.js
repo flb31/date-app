@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'starter.controllers', 'starter.services', 'mwl.calendar', 'firebase', 'ngCordova' ])
+angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'starter.controllers', 'starter.services', 'mwl.calendar', 'firebase', 'ngCordova', 'ionic-material', 'ionMdInput' ])
 
 .run(function($ionicPlatform, $location, Login) {
   $ionicPlatform.ready(function() {
@@ -39,7 +39,7 @@ angular.module('starter', ['ionic', 'starter.constants', 'starter.values', 'star
 .config(function($stateProvider, $ionicConfigProvider, calendarConfig) {
 
   //Translate
-  $ionicConfigProvider.backButton.text('Atrás');
+  $ionicConfigProvider.backButton.text('');
   
   //Moment Config
   moment.locale('es', {weekdays: 'Dom_Lun_Mar_Mie_Jue_Vie_Sab'.split('_')});

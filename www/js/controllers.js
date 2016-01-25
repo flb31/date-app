@@ -1,10 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, $location, User, Login, CalendarNotification, Calendar, CalendarData) {
+.controller('HomeCtrl', function($scope, $location, User, Login, CalendarNotification, Calendar, CalendarData, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
   $scope.user = User.info();
-  $scope.logout = function(){
-    Login.logout();
-  }
   
   //Load dates for notification
   var dates = User.dates();
@@ -37,6 +34,19 @@ angular.module('starter.controllers', [])
   
   $scope.totalDates = User.totalDates();
   $scope.nextDate = CalendarData.nextDate();
+  
+  
+  //Animate
+  $scope.isExpanded = true;
+  $timeout(function() {
+      ionicMaterialMotion.fadeSlideIn({
+          selector: '.animate-fade-slide-in .item'
+      });
+  }, 200);
+
+  // Activate ink for controller
+  ionicMaterialInk.displayEffect();
+  
 })
 
 .controller('CalendarCtrl', function($scope, $location, CalendarData) {
@@ -58,7 +68,8 @@ angular.module('starter.controllers', [])
   $scope.date = objDate;
 })
 
-.controller('SettingCtrl', function($scope, User, BusinessEmail, BusinessPhone) {
+.controller('SettingCtrl', function($scope, User, BusinessEmail, BusinessPhone, ionicMaterialInk) {
+  ionicMaterialInk.displayEffect();
   $scope.user = User.info();
   $scope.totalDates = User.totalDates();
   $scope.phone = BusinessPhone;

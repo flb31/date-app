@@ -10,6 +10,9 @@
     "angular-bootstrap-calendar": "~0.18.0",
     "angular-bootstrap": "~1.0.0",
     "moment": "~2.11.0",
-    "ngCordova": "~0.1.24-alpha"
+    "ngCordova": "~0.1.24-alpha",
+    "ionic-material": "~0.4.2",
+    "robotodraft": "~1.1.0",
+    "ion-md-input": "~1.0.4"
   }
 }
