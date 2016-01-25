@@ -5,6 +5,9 @@
 - Android (SDK Android, JDK)
 - iOS (xcode)
 
+###Antes de ejecutar el proyecto
+- `npm install`
+
 ###Correr el proyecto
 - webserver: `ionic serve`
 - Compilar: `ionic build android` (o ios)
